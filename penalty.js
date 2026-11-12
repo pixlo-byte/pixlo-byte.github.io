@@ -4,7 +4,7 @@ if(!card)return;
 var openFlappy=card.onclick;
 function g(i){return document.getElementById(i)}
 var pk=document.createElement('div');pk.className='gm';
-pk.innerHTML='<div class="gbox"><button class="gx" id="pkx">✕</button><h3>CHOOSE <b>GAME</b></h3><button class="gpick" id="pkf">🐤 FLAPPY BABY</button><button class="gpick" id="pkp">⚽ PRINCY SHOOTOUT</button></div>';
+pk.innerHTML='<div class="gbox"><button class="gx" id="pkx">✕</button><h3>CHOOSE <b>GAME</b></h3><button class="gpick" id="pkf">🐤 FLAPPY KOTTA</button><button class="gpick" id="pkp">⚽ PRINCY SHOOTOUT</button></div>';
 var pm=document.createElement('div');pm.className='gm';
 pm.innerHTML='<div class="gbox"><button class="gx" id="px">✕</button><h3>PRINCY <b>SHOOTOUT</b></h3><div class="gh"><span>Goals <b id="pg">0</b>/5</span><span>Best <b id="pb">0</b></span></div><canvas id="pc" width="320" height="440"></canvas><p class="gmsg" id="pmsg">Tap the goal to shoot</p></div>';
 document.body.appendChild(pk);document.body.appendChild(pm);

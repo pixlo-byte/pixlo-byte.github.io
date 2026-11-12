@@ -3,11 +3,11 @@ var card=document.getElementById('playGame');
 if(!card)return;
 card.style.cursor='pointer';
 var m=document.createElement('div');m.className='gm';
-m.innerHTML='<div class="gbox"><button class="gx" id="gx">✕</button><h3>FLAPPY <b>BABY</b></h3><div class="gh"><span>Score <b id="gs">0</b></span><span>Best <b id="gb">0</b></span></div><canvas id="gc" width="320" height="440"></canvas><p class="gmsg" id="gmsg">Tap to start</p></div>';
+m.innerHTML='<div class="gbox"><button class="gx" id="gx">✕</button><h3>FLAPPY <b>KOTTA</b></h3><div class="gh"><span>Score <b id="gs">0</b></span><span>Best <b id="gb">0</b></span></div><canvas id="gc" width="320" height="440"></canvas><p class="gmsg" id="gmsg">Tap to start</p></div>';
 document.body.appendChild(m);
-var c=document.getElementById('gc'),x=c.getContext('2d'),W=320,H=440,R=18,BX=80,GAP=135;
-var face=new Image();face.src='friend.png';
-var snd={flap:new Audio('flap.m4a'),hit:new Audio('hit.m4a')},ok={flap:true,hit:true},AC;
+var c=document.getElementById('gc'),x=c.getContext('2d'),W=320,H=440,R=24,BX=80,GAP=135;
+var face=new Image();face.src='flappy.png';
+var snd={flap:new Audio('chicken.mp3'),hit:new Audio('damage.mp3')},ok={flap:true,hit:true},AC;
 snd.flap.onerror=function(){ok.flap=false};
 snd.hit.onerror=function(){ok.hit=false};
 function beep(f,d){try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();var o=AC.createOscillator(),g=AC.createGain();o.frequency.value=f;g.gain.value=.15;o.connect(g);g.connect(AC.destination);o.start();o.stop(AC.currentTime+d)}catch(e){}}
@@ -50,14 +50,7 @@ function draw(){
  pipes.forEach(function(p){x.fillRect(p.x,0,50,p.t);x.fillRect(p.x,p.t+GAP,50,H);});
  x.shadowBlur=0;
  x.save();x.translate(BX,by);x.rotate(Math.max(-.5,Math.min(.8,vy*.06)));
- x.beginPath();x.arc(0,0,R,0,7);x.save();x.clip();
- if(face.complete&&face.naturalWidth){
-  var s=Math.min(face.naturalWidth,face.naturalHeight);
-  x.drawImage(face,(face.naturalWidth-s)/2,(face.naturalHeight-s)/2,s,s,-R,-R,R*2,R*2);
- }else{x.fillStyle='#fff';x.fillRect(-R,-R,R*2,R*2)}
- x.restore();
- x.lineWidth=3;x.strokeStyle='#fff';x.shadowColor='#39e61f';x.shadowBlur=12;
- x.beginPath();x.arc(0,0,R,0,7);x.stroke();x.restore();
+ if(face.complete&&face.naturalWidth){var hh=70,ww=hh*face.naturalWidth/face.naturalHeight;x.shadowColor='#39e61f';x.shadowBlur=10;x.drawImage(face,-ww/2,-hh/2,ww,hh);x.shadowBlur=0}else{x.fillStyle='#fff';x.fillRect(-R,-R,R*2,R*2)}x.restore();
  x.shadowBlur=0;
 }
 function loop(){if(!open)return;update();draw();raf=requestAnimationFrame(loop)}
