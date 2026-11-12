@@ -1,0 +1,10 @@
+.gm{position:fixed;inset:0;z-index:99;background:rgba(0,0,0,.88);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:16px}
+.gm.on{display:flex}
+.gbox{position:relative;width:100%;max-width:380px;padding:20px;border-radius:24px;background:linear-gradient(145deg,#0f160f,#050805);border:1px solid #39e61f;box-shadow:0 0 50px rgba(57,230,31,.35);text-align:center}
+.gbox h3{font-size:1.3rem;letter-spacing:.12em;font-weight:900;margin-bottom:8px}
+.gbox h3 b{color:#39e61f;text-shadow:0 0 16px #39e61f}
+.gx{position:absolute;top:12px;right:14px;background:none;border:0;color:#fff;font-size:1.3rem}
+.gh{display:flex;justify-content:space-between;font-size:.9rem;color:#bbb;margin-bottom:10px}
+.gh b{color:#39e61f;font-size:1.1rem}
+#gc{width:100%;display:block;border-radius:16px;border:1px solid #223;touch-action:none}
+.gmsg{margin-top:10px;color:#ccc;font-weight:300;min-height:24px}
