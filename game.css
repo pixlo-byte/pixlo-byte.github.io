@@ -74,3 +74,5 @@
 .pxbtn:active{background:#39e61f;color:#000}
 .pxback{margin-top:12px;background:none;border:0;color:#aaa;font-size:.85rem}
 .pxin{display:none;width:100%;margin-top:10px;padding:12px;border-radius:12px;border:1px solid #333;background:#111;color:#fff;font-size:1rem;text-align:center}
+#mmg{position:absolute;right:40px;bottom:170px;z-index:3;width:60px;height:60px;border-radius:50%;border:2px solid #39e61f;background:rgba(57,230,31,.15);font-size:1.6rem;touch-action:none}
+#mmg:active{background:rgba(57,230,31,.5)}
