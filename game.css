@@ -64,3 +64,13 @@
 #mmjr{right:24px}
 .mmj i{position:absolute;left:50%;top:50%;width:54px;height:54px;margin:-27px 0 0 -27px;border-radius:50%;background:rgba(57,230,31,.45);border:2px solid #39e61f;pointer-events:none}
 #mmrot{position:absolute;inset:0;z-index:5;display:none;align-items:center;justify-content:center;background:#000;color:#fff;font-size:1.2rem;text-align:center;padding:20px}
+.fbox{max-height:92vh;overflow-y:auto}
+.pxorb{font-size:64px;margin:6px 0;animation:pxp 2s ease-in-out infinite;filter:drop-shadow(0 0 18px #39e61f)}
+@keyframes pxp{50%{transform:scale(1.12)}}
+.pxq{font-size:1.15rem;font-weight:700;min-height:56px;margin:6px 0}
+.pxn{color:#39e61f;font-size:.8rem;letter-spacing:.2em;min-height:18px}
+.pxa{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.pxbtn{padding:13px;border-radius:40px;border:1.5px solid #39e61f;background:transparent;color:#fff;font-size:1rem}
+.pxbtn:active{background:#39e61f;color:#000}
+.pxback{margin-top:12px;background:none;border:0;color:#aaa;font-size:.85rem}
+.pxin{display:none;width:100%;margin-top:10px;padding:12px;border-radius:12px;border:1px solid #333;background:#111;color:#fff;font-size:1rem;text-align:center}
