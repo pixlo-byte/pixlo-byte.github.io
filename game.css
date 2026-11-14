@@ -67,3 +67,6 @@
 .fbox{max-height:92vh;overflow-y:auto}
 #mmg{position:absolute;right:40px;bottom:170px;z-index:3;width:60px;height:60px;border-radius:50%;border:2px solid #39e61f;background:rgba(57,230,31,.15);font-size:1.6rem;touch-action:none}
 #mmg:active{background:rgba(57,230,31,.5)}
+#sfv{width:100%;display:block;border-radius:16px;border:1px solid #223;touch-action:none}
+#sfmodal{touch-action:none;user-select:none;-webkit-user-select:none}
+html.sflock,body.sflock{overflow:hidden!important;height:100%!important;overscroll-behavior:none!important;touch-action:none!important}
