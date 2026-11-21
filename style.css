@@ -1,6 +1,6 @@
 :root{--g:#39e61f;--bg:#020402}
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:auto}
 body{background:var(--bg);color:#fff;font-family:'Outfit',system-ui,sans-serif;overflow-x:hidden}
 svg{fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 
@@ -161,3 +161,5 @@ html.sflock #sprog{opacity:0}
 nav{flex-wrap:nowrap;gap:8px}
 nav a{flex:0 0 auto;overflow:visible;padding:7px 12px;font-size:.88rem}
 nav a .rip{display:none}
+/* SMOOTHNAV */
+#about,#services,#work,#contact{scroll-margin-top:14px}
