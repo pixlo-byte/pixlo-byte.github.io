@@ -166,7 +166,7 @@ form.addEventListener("submit",function(e){e.preventDefault();send(input.value)}
 D.addEventListener("keydown",function(e){if(e.key=="Escape"&&isOpen)close()});
 setTimeout(function(){
  var shown=false;try{shown=sessionStorage.getItem("pxtip")}catch(e){}
- if(isOpen||shown||D.getElementById("swm")||D.documentElement.classList.contains("sflock"))return;
+ if(isOpen||shown||D.getElementById("pxi")||D.documentElement.classList.contains("sflock"))return;
  try{sessionStorage.setItem("pxtip","1")}catch(e){}
  tip.classList.add("pxshow");setTimeout(function(){tip.classList.remove("pxshow")},5000);
 },8000);

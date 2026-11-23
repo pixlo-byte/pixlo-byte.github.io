@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PIXLO FX · Durganandhan ks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--g:#39e61f;--bg:#030603}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:#e9efe8;font-family:'Outfit',system-ui,sans-serif;overflow-x:hidden;line-height:1.5}
+a{color:inherit;text-decoration:none}
+#fx{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.glow{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(circle 420px at 80% 12%,rgba(57,230,31,.22),transparent 70%),radial-gradient(circle 460px at 6% 70%,rgba(0,210,150,.14),transparent 70%)}
+header,main,footer{position:relative;z-index:2}
+#pre{position:fixed;inset:0;z-index:500;background:#020402;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:transform .9s cubic-bezier(.7,0,.2,1)}
+#pre.go{transform:translateY(-100%)}
+.cnt{font:900 italic 22vw/1 'Outfit',sans-serif;color:#fff;text-shadow:0 0 40px rgba(57,230,31,.5)}
+.cnt em{color:var(--g);font-size:.4em;font-style:normal}
+#pre p{letter-spacing:.7em;font-size:.7rem;color:#9aa;margin-top:10px}
+header{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;gap:14px;padding:12px 5%;padding-top:calc(12px + env(safe-area-inset-top,0px));background:rgba(3,6,3,.85);border-bottom:1px solid rgba(255,255,255,.08)}
+.logo{font:900 italic 1.3rem/1 'Outfit',sans-serif;white-space:nowrap}
+.logo b{color:var(--g)}
+nav{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav a{flex:0 0 auto;padding:7px 12px;border-radius:18px;font-size:.85rem;color:#cfd8cd}
+nav a:hover,nav a:active{background:rgba(57,230,31,.15);color:var(--g)}
+.rv{opacity:0;transform:translateY(46px) scale(.97);filter:blur(7px);transition:opacity .9s cubic-bezier(.2,.7,.2,1) var(--d,0s),transform .9s cubic-bezier(.2,.9,.3,1.05) var(--d,0s),filter .9s ease var(--d,0s)}
+.rv.in{opacity:1;transform:none;filter:none}
+.hero{display:grid;gap:34px;padding:40px 6% 20px;align-items:center}
+.k{letter-spacing:.5em;font-size:.65rem;color:var(--g);margin-bottom:14px}
+h1{font:900 clamp(2.6rem,13vw,6.4rem)/.95 'Outfit',sans-serif;letter-spacing:-.03em}
+.gr{color:var(--g);text-shadow:0 0 30px rgba(57,230,31,.5)}
+.role{font-size:1.2rem;font-weight:300;margin:18px 0 8px;color:#fff}
+.lead{max-width:420px;color:#b9c4b7;font-weight:300}
+.row{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.btn{display:inline-block;padding:14px 26px;border-radius:40px;background:var(--g);color:#031003;font-weight:700;border:1.5px solid var(--g);box-shadow:0 0 24px rgba(57,230,31,.35);transition:transform .2s;cursor:pointer;font-size:1rem;font-family:inherit}
+.btn.ghost{background:transparent;color:#fff;box-shadow:none}
+.btn:active{transform:scale(.94)}
+@keyframes pp{0%{box-shadow:0 0 0 0 rgba(57,230,31,.55)}100%{box-shadow:0 0 0 20px rgba(57,230,31,0)}}
+@media(hover:hover){.btn:hover{animation:pp 1.3s ease-out infinite}}
+.hp{position:relative}
+.hp::before{content:"";position:absolute;inset:-12%;background:radial-gradient(circle,rgba(57,230,31,.35),transparent 65%);pointer-events:none}
+.shot{position:relative;width:100%;max-width:420px;margin:0 auto;aspect-ratio:530/780;overflow:hidden;border-radius:28px;-webkit-mask-image:linear-gradient(#000 72%,transparent);mask-image:linear-gradient(#000 72%,transparent)}
+.shot img{position:absolute;top:-19.23%;left:0;width:177.5%;max-width:none;display:block}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:40px 6%;text-align:center}
+.stats div{padding:18px 6px;border:1px solid rgba(255,255,255,.12);border-radius:20px;background:rgba(255,255,255,.04)}
+.stats b{font:900 clamp(1.8rem,8vw,3rem)/1 'Outfit',sans-serif}
+.stats i{font-style:normal;color:var(--g);font-weight:900;font-size:1.6rem}
+.stats span{display:block;font-size:.75rem;color:#aab5a8;margin-top:6px}
+.sec{padding:clamp(60px,12vw,110px) 6% 10px}
+.h2{font:900 clamp(2.4rem,11vw,5rem)/1 'Outfit',sans-serif;letter-spacing:-.02em;margin-bottom:28px}
+.h2 i{font-style:normal;color:var(--g);text-shadow:0 0 24px rgba(57,230,31,.6)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.card{display:block;border:1px solid rgba(255,255,255,.12);border-radius:22px;overflow:hidden;background:linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.02));transition:transform .3s,border-color .3s}
+.card:hover,.card:active{transform:translateY(-6px);border-color:var(--g)}
+.th{height:130px;display:grid;place-items:center;font-size:3rem}
+.cb{padding:16px 18px 20px}
+.cb h3{font-size:1.15rem;margin-bottom:4px}
+.cb p{font-size:.88rem;color:#aab5a8;font-weight:300}
+.cb em{display:inline-block;margin-top:12px;font-style:normal;color:var(--g);font-size:.85rem;font-weight:700}
+.about{font-size:clamp(1.1rem,4.6vw,1.6rem);font-weight:300;line-height:1.6;max-width:780px;color:#dfe8dd}
+.about b{color:var(--g);font-weight:700}
+.num{font:900 1rem 'Outfit',sans-serif;color:var(--g);letter-spacing:.2em}
+.note{margin-top:20px;color:#aab5a8;font-weight:300}
+.tags{display:flex;flex-wrap:wrap;gap:10px}
+.tags span{padding:10px 18px;border-radius:30px;border:1px solid rgba(57,230,31,.5);background:rgba(57,230,31,.08);font-size:.95rem}
+form{display:grid;gap:12px;max-width:560px}
+form input,form textarea{width:100%;padding:14px 16px;border-radius:14px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.05);color:#fff;font:inherit;font-size:16px;outline:none}
+form input:focus,form textarea:focus{border-color:var(--g)}
+form textarea{min-height:130px;resize:vertical}
+#fm{min-height:1.4em;color:var(--g);font-size:.9rem}
+.soc{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.soc a{padding:10px 18px;border-radius:24px;border:1px solid rgba(255,255,255,.2);font-size:.9rem}
+.soc a:hover,.soc a:active{border-color:var(--g);color:var(--g)}
+footer{text-align:center;padding:90px 6% calc(70px + env(safe-area-inset-bottom,0px))}
+.big{font:900 italic clamp(2.6rem,14vw,5rem)/1 'Outfit',sans-serif}
+.big b{color:var(--g)}
+footer p{color:#aab5a8;margin-top:12px;font-weight:300}
+@media(min-width:820px){.hero{grid-template-columns:1.1fr .9fr;padding-top:70px}}
+@media(prefers-reduced-motion:reduce){.rv{transition:none}}
+</style>
+<noscript><style>.rv{opacity:1;transform:none;filter:none}#pre{display:none}</style></noscript>
+</head>
+<body>
+<div id="pre"><div class="cnt"><span id="pn">0</span><em>%</em></div><p>PIXLO FX</p></div>
+<canvas id="fx"></canvas><div class="glow"></div>
+<header>
+ <a class="logo" href="#home">PIXLO <b>FX</b></a>
+ <nav><a href="#home">Home</a><a href="#projects">Projects</a><a href="#about">About</a><a href="#services">Services</a><a href="#skills">Skills</a><a href="#contact">Contact</a><a href="index.html">Main site</a></nav>
+</header>
+<main>
+<section class="hero" id="home">
+ <div>
+  <p class="k rv">EDIT STUDIO</p>
+  <h1 class="rv"><span data-s>DURGANANDHAN</span><br><span class="gr"><span data-s>KS</span>.</span></h1>
+  <p class="role rv">Gamer, Photo and Video Editor</p>
+  <p class="lead rv">I'm a passionate gamer and creative editor, who loves to turn ideas into stunning visuals.</p>
+  <div class="row rv"><a class="btn" href="#contact">Let's work together</a><a class="btn ghost" href="#projects">See projects</a></div>
+ </div>
+ <div class="hp rv"><div class="shot"><img src="photo.jpg" alt="Durganandhan ks" onerror="this.onerror=null;this.src='photo.png'"></div></div>
+</section>
+<section class="stats rv">
+ <div><b data-c="3">0</b><i>+</i><span>Years experience</span></div>
+ <div><b data-c="50">0</b><i>+</i><span>Projects completed</span></div>
+ <div><b data-c="40">0</b><i>+</i><span>Happy clients</span></div>
+</section>
+<section class="sec" id="projects">
+ <h2 class="h2 rv"><span data-s>PROJECTS</span><i>.</i></h2>
+ <div class="grid">
+  <a class="card rv" href="index.html?open=games"><div class="th" style="background:linear-gradient(135deg,#0d3a10,#06150a)">⚽</div><div class="cb"><h3>Princy Shootout</h3><p>Tap the goal and beat the keeper. 5 shots, how many can you score?</p><em>Play →</em></div></a>
+  <a class="card rv" href="index.html?open=games"><div class="th" style="background:linear-gradient(135deg,#123a30,#06150f)">🔫</div><div class="cb"><h3>Mini Militia</h3><p>2 to 12 players, jetpacks and room codes. Bots fill empty slots.</p><em>Play →</em></div></a>
+  <a class="card rv" href="index.html?open=games"><div class="th" style="background:linear-gradient(135deg,#2a3a0d,#10150a)">🚆</div><div class="cb"><h3>Track Rush</h3><p>Swipe to dodge trains, jump barriers and collect coins.</p><em>Play →</em></div></a>
+  <a class="card rv" href="index.html?open=photo"><div class="th" style="background:linear-gradient(135deg,#3a300d,#15110a)">📷</div><div class="cb"><h3>Photo Filters</h3><p>Neon, Dreamy, Golden, Misty, Monsoon and more. Free in your browser.</p><em>Try it →</em></div></a>
+ </div>
+</section>
+<section class="sec" id="about">
+ <h2 class="h2 rv"><span data-s>ABOUT</span><i>.</i></h2>
+ <p class="about rv">I'm <b>Durganandhan ks</b>, a creative editor. I love photo and video editing, visual effects, and making unique content. Always learning fresh styles and improving my skills.</p>
+</section>
+<section class="sec" id="services">
+ <h2 class="h2 rv"><span data-s>SERVICES</span><i>.</i></h2>
+ <div class="grid">
+  <div class="card rv"><div class="cb"><p class="num">01</p><h3>Video Editing</h3><p>Cuts, effects and edits for your videos.</p></div></div>
+  <div class="card rv"><div class="cb"><p class="num">02</p><h3>Photo Editing</h3><p>Color looks, retouching and filters for your photos.</p></div></div>
+  <div class="card rv"><div class="cb"><p class="num">03</p><h3>Gaming</h3><p>Game content, plus the free games built right on this site.</p></div></div>
+ </div>
+ <p class="note rv">Pricing depends on the project. Send a message with what you need and I'll reply with the details.</p>
+</section>
+<section class="sec" id="skills">
+ <h2 class="h2 rv"><span data-s>SKILLS</span><i>.</i></h2>
+ <div class="tags rv"><span>Video editing</span><span>Photo editing</span><span>Visual effects</span><span>Creative content</span><span>Gaming</span></div>
+</section>
+<section class="sec" id="contact">
+ <h2 class="h2 rv"><span data-s>CONTACT</span><i>.</i></h2>
+ <form id="cf" class="rv" autocomplete="off">
+  <input name="n" type="text" maxlength="40" placeholder="Your name">
+  <textarea name="m" maxlength="800" placeholder="Tell me about your project…"></textarea>
+  <button class="btn" type="submit">Send message</button>
+  <p id="fm"></p>
+ </form>
+ <div class="soc rv"><a href="https://instagram.com/d.urganandha.n" target="_blank" rel="noopener">Instagram</a><a href="https://youtube.com/@pixlo-fx" target="_blank" rel="noopener">YouTube</a><a href="https://t.me/PixLo_Fx" target="_blank" rel="noopener">Telegram</a><a href="https://discord.gg/AVC9xr9G" target="_blank" rel="noopener">Discord</a></div>
+</section>
+</main>
+<footer><div class="big rv">PIXLO <b>FX</b></div><p class="rv">Let's create something amazing together</p></footer>
+<script>
+(function(){
+var D=document,$=function(i){return D.getElementById(i)};
+var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;
+var L='ABCDEFGHIJKLMNOPQRSTUVWXYZ#%';
+function scr(el){
+ var t=el.getAttribute('data-t');if(!t){t=el.textContent;el.setAttribute('data-t',t)}
+ var n=t.length,f=0,iv=setInterval(function(){
+  f++;var k=Math.floor(f/2),s='';
+  for(var i=0;i<n;i++)s+=i<k?t[i]:L[Math.floor(Math.random()*L.length)];
+  el.textContent=s;
+  if(k>=n){clearInterval(iv);el.textContent=t}
+ },38);
+}
+function cnt(){
+ [].forEach.call(D.querySelectorAll('[data-c]'),function(b){
+  var v=+b.getAttribute('data-c'),t0=0;
+  (function f(ts){if(!t0)t0=ts;var p=Math.min(1,(ts-t0)/1400);b.textContent=Math.round(v*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f)})(performance.now());
+ });
+}
+function start(){
+ var els=[].slice.call(D.querySelectorAll('.rv'));
+ if(reduce||!window.IntersectionObserver){
+  els.forEach(function(e){e.classList.add('in')});
+  [].forEach.call(D.querySelectorAll('[data-c]'),function(b){b.textContent=b.getAttribute('data-c')});
+  return;
+ }
+ [].forEach.call(D.querySelectorAll('.hero .rv'),function(e,i){e.style.setProperty('--d',(i*.12)+'s')});
+ var io=new IntersectionObserver(function(es){
+  es.forEach(function(e){
+   if(!e.isIntersecting)return;
+   io.unobserve(e.target);
+   var el=e.target;el.classList.add('in');
+   [].forEach.call(el.querySelectorAll('[data-s]'),scr);
+   if(el.classList.contains('stats'))cnt();
+  });
+ },{threshold:.12});
+ els.forEach(function(e){io.observe(e)});
+}
+var pre=$('pre'),pn=$('pn'),force=/[?&]intro=1/.test(location.search),seen=false;
+try{seen=sessionStorage.getItem('pxv2')}catch(e){}
+if(reduce||(seen&&!force)){pre.remove();start()}
+else{
+ try{sessionStorage.setItem('pxv2','1')}catch(e){}
+ var t0=performance.now();
+ (function tk(now){
+  var p=Math.min(1,(now-t0)/1700);pn.textContent=Math.round(p*100);
+  if(p<1)requestAnimationFrame(tk);
+  else{pre.classList.add('go');setTimeout(function(){pre.remove()},1000);start()}
+ })(t0);
+}
+var cv=$('fx'),x=cv.getContext('2d'),W=1,H=1,P=[],small=innerWidth<700,N=small?28:46,i;
+var sp=D.createElement('canvas');sp.width=sp.height=32;
+var sx=sp.getContext('2d'),gg=sx.createRadialGradient(16,16,0,16,16,16);
+gg.addColorStop(0,'rgba(190,255,160,1)');gg.addColorStop(.3,'rgba(57,230,31,.55)');gg.addColorStop(1,'rgba(57,230,31,0)');
+sx.fillStyle=gg;sx.fillRect(0,0,32,32);
+function size(){W=cv.width=innerWidth;H=cv.height=innerHeight}
+size();addEventListener('resize',function(){if(innerWidth!==W||Math.abs(innerHeight-H)>120)size()});
+for(i=0;i<N;i++)P.push({x:Math.random()*W,y:Math.random()*H,v:.2+Math.random()*.6,s:6+Math.random()*16,a:.25+Math.random()*.5,ph:Math.random()*6.283});
+var last=0;
+function draw(now){
+ x.clearRect(0,0,W,H);
+ for(var i=0;i<N;i++){
+  var p=P[i];p.y-=p.v;p.x+=Math.sin(now*.0006+p.ph)*.3;
+  if(p.y<-30){p.y=H+20;p.x=Math.random()*W}
+  x.globalAlpha=p.a;x.drawImage(sp,p.x,p.y,p.s,p.s);
+ }
+ x.globalAlpha=1;
+}
+function loop(now){
+ requestAnimationFrame(loop);
+ if(D.hidden||now-last<(small?40:30))return;
+ last=now;draw(now);
+}
+if(reduce)draw(0);else requestAnimationFrame(loop);
+var f=$('cf'),fm=$('fm');
+f.addEventListener('submit',function(e){
+ e.preventDefault();
+ var n=f.elements.n.value.trim(),m=f.elements.m.value.trim();
+ if(!m){fm.textContent='Write a message first.';return}
+ var body=(n?'Name: '+n+'\n\n':'')+m;
+ fm.textContent='Opening your email app…';
+ location.href='mailto:durganandhan123@gmail.com?subject='+encodeURIComponent('Message from your website')+'&body='+encodeURIComponent(body);
+});
+})();
+</script>
+</body>
+</html>
