@@ -81,6 +81,26 @@ footer{text-align:center;padding:90px 6% calc(70px + env(safe-area-inset-bottom,
 footer p{color:#aab5a8;margin-top:12px;font-weight:300}
 @media(min-width:820px){.hero{grid-template-columns:1.1fr .9fr;padding-top:70px}}
 @media(prefers-reduced-motion:reduce){.rv{transition:none}}
+
+/* FIX1 START */
+body{overflow-x:clip}
+.hero>*,.grid>*{min-width:0}
+h1{font-size:clamp(2rem,9vw,4.4rem);overflow-wrap:anywhere}
+header{width:100%;max-width:100vw}
+.logo{flex:0 0 auto}
+nav{min-width:0;flex:1 1 auto;justify-content:flex-end}
+.shot{max-width:min(420px,100%)}
+.shot img{left:-22%;top:-23%;width:190%}
+@media(min-width:820px){h1{font-size:clamp(2.4rem,5.2vw,5rem)}}
+/* FIX1 END */
+/* FIX2 START */
+html,body{max-width:100%;overflow-x:hidden}
+.hero,.sec,.stats,footer{max-width:100vw}
+h1{white-space:nowrap;overflow-wrap:normal}
+.lead{max-width:min(420px,100%)}
+.hp::before{inset:0}
+@media(max-width:600px){header{flex-wrap:wrap;row-gap:6px}nav{order:3;flex:1 0 100%;justify-content:flex-start}}
+/* FIX2 END */
 </style>
 <noscript><style>.rv{opacity:1;transform:none;filter:none}#pre{display:none}</style></noscript>
 </head>
@@ -229,6 +249,21 @@ f.addEventListener('submit',function(e){
  fm.textContent='Opening your email app…';
  location.href='mailto:durganandhan123@gmail.com?subject='+encodeURIComponent('Message from your website')+'&body='+encodeURIComponent(body);
 });
+})();
+</script>
+<script>
+(function(){
+function fit(){
+ var h=document.querySelector('h1');if(!h)return;
+ h.style.fontSize='';h.style.display='inline-block';
+ var vw=window.visualViewport?visualViewport.width:innerWidth,box=h.parentNode,avail=Math.min(box.clientWidth,vw*.9),fs=parseFloat(getComputedStyle(h).fontSize),n=0;
+ while(h.offsetWidth>avail&&n<40){fs*=.95;h.style.fontSize=fs+'px';n++}
+ h.style.display='';
+}
+fit();
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);
+window.addEventListener('load',fit);
+window.addEventListener('resize',fit);
 })();
 </script>
 </body>
