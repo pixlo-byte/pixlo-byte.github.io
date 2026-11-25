@@ -130,21 +130,25 @@ function reply(a){
 var AI="https://pixlo-ai.durganandhan123.workers.dev",hist=[];
 function aiAsk(txt,fb){
  busy=true;
+ var tok="";try{tok=sessionStorage.getItem("pxfm")||""}catch(e){}
+ var fr=!!tok;
  var w=mk("div","pxm bot"),d=mk("div","pxdots");d.innerHTML="<i></i><i></i><i></i>";w.appendChild(d);
  msgs.appendChild(w);msgs.scrollTop=msgs.scrollHeight;
  hist.push({role:"user",content:txt});if(hist.length>8)hist=hist.slice(-8);
+ var ms=hist.map(function(h,i){return(!fr&&typeof REM!=="undefined"&&i===hist.length-1&&h.role==="user")?{role:"user",content:h.content+REM}:h});
  var ctl=new AbortController(),to=setTimeout(function(){ctl.abort()},20000);
- fetch(AI,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({messages:hist}),signal:ctl.signal})
+ fetch(AI,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({messages:ms,token:tok}),signal:ctl.signal})
  .then(function(r){if(!r.ok)throw 0;return r.json()})
  .then(function(j){
   clearTimeout(to);
   var t=(j&&typeof j.reply=="string")?j.reply.trim():"";
   if(!t)throw 0;
+  if(j.token){try{sessionStorage.setItem("pxfm",j.token)}catch(e){}fr=true;var st=root.querySelector(".pxst");if(st)st.textContent="● Friend mode 😎"}
   if(w.parentNode)w.parentNode.removeChild(w);
   hist.push({role:"assistant",content:t});
-  var f=answer(txt);
+  var f=fr?null:answer(txt);
   add("bot",t,(f&&f!==A.nope&&f!==A.greet)?f.b:null);
-  setChips(FB);busy=false;
+  setChips(fr?["Tell me a joke","Give me a fun fact","Let's just chat"]:FB);busy=false;
  }).catch(function(){
   clearTimeout(to);
   if(w.parentNode)w.parentNode.removeChild(w);
