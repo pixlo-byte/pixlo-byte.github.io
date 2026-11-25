@@ -273,3 +273,8 @@ footer{padding:calc(70px*var(--sp)) 6% calc(100px*var(--sp))}
 .shot{padding:0!important;-webkit-mask-image:none!important;mask-image:none!important}
 .shot img{filter:none!important;-webkit-mask-image:radial-gradient(ellipse closest-side at 50% 50%,#000 68%,transparent 100%);mask-image:radial-gradient(ellipse closest-side at 50% 50%,#000 68%,transparent 100%)}
 /* PHOTO END */
+
+/* WEBDEV START */
+.gplay{margin-top:26px;display:flex;justify-content:center}
+.gplay .btn{cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+/* WEBDEV END */

@@ -121,8 +121,50 @@ h1{white-space:nowrap;overflow-wrap:normal}
 .shot{padding:0!important;-webkit-mask-image:none!important;mask-image:none!important}
 .shot img{filter:none!important;-webkit-mask-image:radial-gradient(ellipse closest-side at 50% 50%,#000 68%,transparent 100%);mask-image:radial-gradient(ellipse closest-side at 50% 50%,#000 68%,transparent 100%)}
 /* PHOTO END */
+/* CHAT START */
+#pxbot{position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:90;font-family:'Outfit',system-ui,sans-serif}
+html.sflock #pxbot{display:none}
+.pxfab{width:58px;height:58px;border-radius:50%;border:1px solid rgba(255,255,255,.35);background:linear-gradient(145deg,#4cf236,#1f8a14);color:#031003;display:grid;place-items:center;box-shadow:0 8px 26px rgba(57,230,31,.45),inset 0 1px 0 rgba(255,255,255,.5);-webkit-tap-highlight-color:transparent;cursor:pointer;transition:transform .2s}
+.pxfab svg{width:27px;height:27px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.pxfab:active{transform:scale(.9)}
+.pxtip{position:absolute;right:68px;bottom:14px;padding:9px 14px;border-radius:18px;white-space:nowrap;font-size:.8rem;color:#fff;background:rgba(20,30,20,.85);border:1px solid rgba(255,255,255,.2);box-shadow:0 6px 20px rgba(0,0,0,.4);opacity:0;transform:translateX(8px);transition:opacity .3s,transform .3s;pointer-events:none}
+.pxtip.pxshow{opacity:1;transform:none}
+.pxpanel{position:absolute;right:0;bottom:70px;width:min(92vw,370px);height:min(70vh,520px);height:min(70dvh,520px);display:flex;flex-direction:column;overflow:hidden;border-radius:26px;color:#fff;background:linear-gradient(145deg,rgba(30,42,30,.93),rgba(8,12,8,.96));-webkit-backdrop-filter:blur(14px) saturate(150%);backdrop-filter:blur(14px) saturate(150%);border:1px solid rgba(255,255,255,.2);box-shadow:0 18px 50px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.3);opacity:0;visibility:hidden;transform:translateY(14px) scale(.96);transform-origin:100% 100%;transition:opacity .25s,transform .3s cubic-bezier(.2,.9,.3,1.1),visibility 0s .3s}
+.pxopen .pxpanel{opacity:1;visibility:visible;transform:none;transition:opacity .25s,transform .3s cubic-bezier(.2,.9,.3,1.1)}
+.pxhead{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.12)}
+.pxht b{display:block;font-size:1rem;font-weight:700}
+.pxst{font-size:.72rem;color:#39e61f}
+.pxx{background:none;border:0;color:#fff;font-size:1.2rem;padding:4px 8px}
+.pxmsgs{flex:1;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding:12px;display:flex;flex-direction:column;gap:8px}
+.pxm{max-width:88%;padding:10px 13px;border-radius:18px;font-size:.88rem;line-height:1.45;animation:pxin .3s ease both}
+.pxm .pxt{white-space:pre-wrap;word-break:break-word}
+.pxm.bot{align-self:flex-start;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.14);border-bottom-left-radius:6px}
+.pxm.me{align-self:flex-end;background:linear-gradient(145deg,#4cf236,#2bb81a);color:#031003;font-weight:500;border-bottom-right-radius:6px}
+@keyframes pxin{from{opacity:0;transform:translateY(8px) scale(.97)}to{opacity:1;transform:none}}
+.pxbs{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
+.pxbl{padding:7px 12px;border-radius:16px;font-size:.78rem;color:#fff;text-decoration:none;border:1px solid rgba(57,230,31,.7);background:rgba(57,230,31,.12);cursor:pointer}
+.pxbl:active{background:#39e61f;color:#000}
+.pxdots{display:flex;gap:4px;padding:4px 2px}
+.pxdots i{width:7px;height:7px;border-radius:50%;background:#39e61f;animation:pxd 1s ease-in-out infinite}
+.pxdots i:nth-child(2){animation-delay:.15s}
+.pxdots i:nth-child(3){animation-delay:.3s}
+@keyframes pxd{50%{transform:translateY(-5px);opacity:.5}}
+.pxchips{display:flex;gap:7px;overflow-x:auto;padding:6px 12px 8px;scrollbar-width:none}
+.pxchips::-webkit-scrollbar{display:none}
+.pxchip{flex:0 0 auto;padding:7px 12px;border-radius:18px;font-size:.78rem;color:#fff;white-space:nowrap;background:transparent;border:1px solid rgba(57,230,31,.6)}
+.pxchip:active{background:#39e61f;color:#000}
+.pxform{display:flex;gap:8px;padding:10px 12px;border-top:1px solid rgba(255,255,255,.12)}
+.pxin{flex:1;min-width:0;padding:10px 14px;border-radius:22px;font-size:16px;color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);outline:none}
+.pxin:focus{border-color:#39e61f}
+.pxsend{width:42px;height:42px;border-radius:50%;border:0;color:#031003;font-size:1rem;background:linear-gradient(145deg,#4cf236,#2bb81a)}
+@media (prefers-reduced-motion:reduce){.pxm,.pxdots i{animation:none}.pxpanel{transition:none}}
+/* CHAT END */
+/* V2FULL START */
+.pj,#work,#playGame{cursor:pointer}
+/* V2FULL END */
 </style>
 <noscript><style>.rv{opacity:1;transform:none;filter:none}#pre{display:none}</style></noscript>
+<link rel="stylesheet" href="game.css?v=8">
 </head>
 <body>
 <div id="pre"><div class="cnt"><span id="pn">0</span><em>%</em></div><p>PIXLO FX</p></div>
@@ -136,8 +178,8 @@ h1{white-space:nowrap;overflow-wrap:normal}
  <div>
   <p class="k rv">EDIT STUDIO</p>
   <h1 class="rv"><span data-s>DURGANANDHAN</span><br><span class="gr"><span data-s>KS</span>.</span></h1>
-  <p class="role rv">Gamer, Photo and Video Editor</p>
-  <p class="lead rv">I'm a passionate gamer and creative editor, who loves to turn ideas into stunning visuals.</p>
+  <p class="role rv">Web Developer, Photo and Video Editor</p>
+  <p class="lead rv">I'm a web developer and creative editor, who loves to turn ideas into stunning visuals.</p>
   <div class="row rv"><a class="btn" href="#contact">Let's work together</a><a class="btn ghost" href="#projects">See projects</a></div>
  </div>
  <div class="hp rv"><div class="shot"><img src="me2.jpg?v=3" alt="Durganandhan ks"></div></div>
@@ -150,11 +192,12 @@ h1{white-space:nowrap;overflow-wrap:normal}
 <section class="sec" id="projects">
  <h2 class="h2 rv"><span data-s>PROJECTS</span><i>.</i></h2>
  <div class="grid">
-  <a class="card rv" href="index.html?open=games"><div class="th" style="background:linear-gradient(135deg,#0d3a10,#06150a)">⚽</div><div class="cb"><h3>Princy Shootout</h3><p>Tap the goal and beat the keeper. 5 shots, how many can you score?</p><em>🚧 In development</em></div></a>
-  <a class="card rv" href="index.html?open=games"><div class="th" style="background:linear-gradient(135deg,#123a30,#06150f)">🔫</div><div class="cb"><h3>Mini Militia</h3><p>2 to 12 players, jetpacks and room codes. Bots fill empty slots.</p><em>Play →</em></div></a>
-  <a class="card rv" href="index.html?open=games"><div class="th" style="background:linear-gradient(135deg,#2a3a0d,#10150a)">🚆</div><div class="cb"><h3>Track Rush</h3><p>Swipe to dodge trains, jump barriers and collect coins.</p><em>Play →</em></div></a>
-  <a class="card rv" href="index.html?open=photo"><div class="th" style="background:linear-gradient(135deg,#3a300d,#15110a)">📷</div><div class="cb"><h3>Photo Filters</h3><p>Neon, Dreamy, Golden, Misty, Monsoon and more. Free in your browser.</p><em>Try it →</em></div></a>
+  <div class="card rv pj" data-open="games"><div class="th" style="background:linear-gradient(135deg,#0d3a10,#06150a)">⚽</div><div class="cb"><h3>Princy Shootout</h3><p>Tap the goal and beat the keeper. 5 shots, how many can you score?</p><em>🚧 In development</em></div></div>
+  <div class="card rv pj" data-open="games"><div class="th" style="background:linear-gradient(135deg,#123a30,#06150f)">🔫</div><div class="cb"><h3>Mini Militia</h3><p>2 to 12 players, jetpacks and room codes. Bots fill empty slots.</p><em>Play →</em></div></div>
+  <div class="card rv pj" data-open="games"><div class="th" style="background:linear-gradient(135deg,#2a3a0d,#10150a)">🚆</div><div class="cb"><h3>Track Rush</h3><p>Swipe to dodge trains, jump barriers and collect coins.</p><em>Play →</em></div></div>
+  <div class="card rv pj" id="work"><div class="th" style="background:linear-gradient(135deg,#3a300d,#15110a)">📷</div><div class="cb"><h3>Photo Filters</h3><p>Neon, Dreamy, Golden, Misty, Monsoon and more. Free in your browser.</p><em>Try it →</em></div></div>
  </div>
+ <div class="row rv" style="margin-top:22px"><a class="btn" id="playGame" role="button" tabindex="0">🎮 Play games</a></div>
 </section>
 <section class="sec" id="about">
  <h2 class="h2 rv"><span data-s>ABOUT</span><i>.</i></h2>
@@ -165,13 +208,13 @@ h1{white-space:nowrap;overflow-wrap:normal}
  <div class="grid">
   <div class="card rv"><div class="cb"><p class="num">01</p><h3>Video Editing</h3><p>Cuts, effects and edits for your videos.</p></div></div>
   <div class="card rv"><div class="cb"><p class="num">02</p><h3>Photo Editing</h3><p>Color looks, retouching and filters for your photos.</p></div></div>
-  <div class="card rv"><div class="cb"><p class="num">03</p><h3>Gaming</h3><p>Game content, plus the free games built right on this site.</p></div></div>
+  <div class="card rv"><div class="cb"><p class="num">03</p><h3>Web Development</h3><p>Clean, fast, mobile-friendly websites and web pages.</p></div></div>
  </div>
  <p class="note rv">Pricing depends on the project. Send a message with what you need and I'll reply with the details.</p>
 </section>
 <section class="sec" id="skills">
  <h2 class="h2 rv"><span data-s>SKILLS</span><i>.</i></h2>
- <div class="tags rv"><span>Video editing</span><span>Photo editing</span><span>Visual effects</span><span>Creative content</span><span>Gaming</span></div>
+ <div class="tags rv"><span>Video editing</span><span>Photo editing</span><span>Visual effects</span><span>Creative content</span><span>Web development</span></div>
 </section>
 <section class="sec" id="contact">
  <h2 class="h2 rv"><span data-s>CONTACT</span><i>.</i></h2>
@@ -286,5 +329,12 @@ window.addEventListener('load',fit);
 window.addEventListener('resize',fit);
 })();
 </script>
+<script src="chatbot.js?v=5"></script>
+<script src="penalty.js?v=20"></script>
+<script src="militia.js?v=20"></script>
+<script src="trackrush.js?v=20"></script>
+<script src="filter.js?v=20"></script>
+<script src="lock.js?v=20"></script>
+<script>document.addEventListener('click',function(e){var c=e.target.closest&&e.target.closest('[data-open]');if(!c)return;var b=document.getElementById('playGame');if(b)b.click()});</script>
 </body>
 </html>

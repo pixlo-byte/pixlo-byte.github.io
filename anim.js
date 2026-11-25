@@ -25,7 +25,7 @@ var st=document.querySelector('.stats');
 if(nums.length&&st){if('IntersectionObserver' in window){var so=new IntersectionObserver(function(es){if(es[0].isIntersecting){so.disconnect();count()}},{threshold:.2});so.observe(st)}else{nums.forEach(function(o){o.n.nodeValue=o.t})}}
 var role=document.querySelector('.role');
 if(role){
- var full=role.textContent.trim(),seq=['Gamer','Photo Editor','Video Editor','Content Creator',full],wi=0,ci=0,del=false;
+ var full=role.textContent.trim(),seq=['Web Developer','Photo Editor','Video Editor','Content Creator',full],wi=0,ci=0,del=false;
  role.style.minHeight=role.offsetHeight+'px';role.textContent='';role.classList.add('typing');
  (function tick(){
   var w=seq[wi],last=wi==seq.length-1;

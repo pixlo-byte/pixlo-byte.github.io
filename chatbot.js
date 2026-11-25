@@ -10,8 +10,8 @@ var A={
  bye:{t:"See you! 👋 Come back anytime, and try the games before you go 🎮",b:[["Open games","act:games"]]},
  id:{t:"I'm a simple helper bot built into this page 🤖. I'm not a full AI, so I only know about Durganandhan, PIXLO FX and this site, but I'll do my best!",c:FB},
  studio:{t:"PIXLO FX Edit Studio is Durganandhan's creative studio. The motto: Create. Edit. Inspire. ✨",b:[["See services","act:go-services"]],c:["Services","Contact"]},
- services:{t:"Durganandhan offers:\n🎮 Gaming\n🎬 Video editing\n📷 Photo editing\n\nYou can try the photo filters and the games right here on the page.",b:[["Try photo filters","act:photo"],["Play games","act:games"]],c:["Hire for an edit","Experience","Contact"]},
- who:{t:"Durganandhan ks is a gamer and a creative photo and video editor, and the person behind PIXLO FX. He loves photo and video editing, visual effects and making unique content, and he's always learning fresh styles. 🔥",b:[["Read About","act:go-about"]],c:["Services","Experience","Contact"]},
+ services:{t:"Durganandhan offers:\n💻 Web development\n🎬 Video editing\n📷 Photo editing\n\nYou can try the photo filters and the games right here on the page.",b:[["Try photo filters","act:photo"],["Play games","act:games"]],c:["Hire for an edit","Experience","Contact"]},
+ who:{t:"Durganandhan ks is a web developer and a creative photo and video editor, and the person behind PIXLO FX. He loves photo and video editing, visual effects and making unique content, and he's always learning fresh styles. 🔥",b:[["Read About","act:go-about"]],c:["Services","Experience","Contact"]},
  exp:{t:"📈 3+ years of experience\n📦 50+ projects completed\n😊 40+ happy clients",c:["Services","Hire for an edit"]},
  hire:{t:"Want an edit or a collab? 🎬 Message Durganandhan directly and tell him what you need. I don't have a fixed price list because it depends on the project, so he'll reply with the details.",b:[["Instagram DM",U.ig],["Telegram",U.tg],["Email",U.mail]],c:["Contact","Services"]},
  contact:{t:"You can reach Durganandhan here:\n✉ durganandhan123@gmail.com\n📸 @d.urganandha.n\n✈ @PixLo_Fx\n▶ @pixlo-fx",b:[["📸 Instagram",U.ig],["▶ YouTube",U.yt],["✈ Telegram",U.tg],["💬 Discord",U.dc],["✉ Email",U.mail]]},
@@ -19,7 +19,7 @@ var A={
  yt:{t:"▶ YouTube: @pixlo-fx",b:[["Open YouTube",U.yt]]},
  tg:{t:"✈ Telegram: @PixLo_Fx",b:[["Open Telegram",U.tg]]},
  dc:{t:"💬 Join the Discord community:",b:[["Open Discord",U.dc]]},
- games:{t:"There are 3 games under Gaming 🎮\n⚽ Princy Shootout\n🔫 Mini Militia (multiplayer with room codes)\n🚆 Track Rush",b:[["Open games","act:games"]],c:["How to play Track Rush","How to play Mini Militia","How to play Princy Shootout"]},
+ games:{t:"There are 3 games behind the Play games button 🎮\n⚽ Princy Shootout\n🔫 Mini Militia (multiplayer with room codes)\n🚆 Track Rush",b:[["Open games","act:games"]],c:["How to play Track Rush","How to play Mini Militia","How to play Princy Shootout"]},
  mm:{t:"🔫 Mini Militia is a side-view shooter for 2 to 12 players, and bots fill the empty slots.\n• Play in landscape\n• Left stick moves (push up for the jetpack)\n• Right stick aims and shoots\n• 💣 throws grenades, and glowing boxes give a shotgun, sniper or grenades\n• Create a room and send the code to friends to play together",b:[["Open games","act:games"]]},
  pr:{t:"⚽ Princy Shootout: tap the goal where you want to shoot. You get 5 shots against the goalkeeper, and the corners are hardest for him to reach. Score as many goals as you can!",b:[["Open games","act:games"]]},
  tr:{t:"🚆 Track Rush: swipe left or right to change lane, swipe up to jump over low barriers, and swipe down to slide under high bars. Collect coins and dodge the trains. It gets faster over time!",b:[["Open games","act:games"]]},
@@ -46,7 +46,7 @@ var I=[
  {k:["photo","photos","filter","filters","picture","camera","dreamy","golden","misty","monsoon","neon","vintage","photography","image","photo editing"],a:A.photo},
  {k:["video","videos","video editing","reel","vfx","visual effects"],a:A.video},
  {k:["game","games","play","gaming","fun","playing","arcade"],a:A.games},
- {k:["service","services","offer","offers","what do you do","what does he do","skills","provide","edit","editing","editor"],a:A.services},
+ {k:["web developer","web development","website","websites","developer","coding","service","services","offer","offers","what do you do","what does he do","skills","provide","edit","editing","editor"],a:A.services},
  {k:["experience","years","projects","clients","stats","how long","how many","completed"],a:A.exp},
  {k:["pixlo","studio","pixlo fx","pixlofx","brand"],a:A.studio},
  {k:["durganandhan","owner","creator","founder","who is","who made","who built","made by","built by","about him","about you","bio"],a:A.who},
@@ -54,6 +54,8 @@ var I=[
  {k:["help","menu","options","what can you do","commands","start"],a:A.help},
  {k:["awesome","amazing","cool","nice","great","love","good","wow","super","fire"],a:A.praise}
 ];
+var ADMX=false;try{ADMX=sessionStorage.getItem("pxmain")==="1"}catch(e){}
+if(!ADMX&&document.getElementById("devblock")){["games","mm","pr","tr","photo"].forEach(function(k){if(A[k]){A[k].t="🚧 The main site is under development, but the games and photo filters are open on the V2 site.\n\n"+A[k].t;A[k].b=[["Open V2 site","v2.html"]]}})}
 function norm(s){return " "+s.toLowerCase().replace(/[^a-z0-9 ]+/g," ").replace(/\s+/g," ").trim()+" "}
 function sc(tx,tk,kw){
  if(kw.indexOf(" ")>-1)return tx.indexOf(" "+kw+" ")>-1?kw.length+3:0;
@@ -94,7 +96,7 @@ var busy=false,greeted=false,isOpen=false;
 function act(a){
  if(a=="games"||a=="photo"){
   var c=D.getElementById(a=="games"?"playGame":"work");
-  if(c){close();setTimeout(function(){c.click()},260)}else add("bot","That section isn't on the page right now.");
+  if(c){close();setTimeout(function(){c.click()},260)}else add("bot","The main site is under development, so that isn't open yet. 🚧");
  }else if(a.indexOf("go-")==0){
   var e=D.getElementById(a.slice(3));
   if(e){close();setTimeout(function(){e.scrollIntoView({behavior:"smooth",block:"start"})},260)}
@@ -107,7 +109,7 @@ function add(kind,text,btns){
   var bw=mk("div","pxbs");
   btns.forEach(function(b){
    var el;
-   if(/^(https?:|mailto:)/.test(b[1])){el=mk("a","pxbl",b[0]);el.href=b[1];if(b[1].indexOf("mailto:")!==0){el.target="_blank";el.rel="noopener"}}
+   if(/^(https?:|mailto:|v2\.html)/.test(b[1])){el=mk("a","pxbl",b[0]);el.href=b[1];if(b[1].indexOf("mailto:")!==0){el.target="_blank";el.rel="noopener"}}
    else{el=mk("button","pxbl",b[0]);el.type="button";el.addEventListener("click",function(){act(b[1].replace("act:",""))})}
    bw.appendChild(el);
   });
@@ -149,9 +151,28 @@ function aiAsk(txt,fb){
   hist.pop();busy=false;reply(fb);
  });
 }
+function adminTry(code){
+ add("me","••••••");
+ var n=0,u=0,now=Date.now();
+ try{n=+sessionStorage.getItem("pxmt")||0;u=+sessionStorage.getItem("pxmu")||0}catch(e){}
+ if(u>now||!(window.crypto&&crypto.subtle)){reply(A.nope);return}
+ crypto.subtle.digest("SHA-256",new TextEncoder().encode("pxmain:"+code)).then(function(buf){
+  var h=[].map.call(new Uint8Array(buf),function(x){return("0"+x.toString(16)).slice(-2)}).join("");
+  if(h==="8ba6414ef66e682514d936afd2feab2ac2ac8aa530d303b7331143dbd9a657a1"){
+   try{sessionStorage.setItem("pxmain","1");sessionStorage.removeItem("pxmt")}catch(e){}
+   add("bot","✅ Admin verified. Opening the main site…");
+   setTimeout(function(){if(window.pxUnlockMain)window.pxUnlockMain();else location.href="index.html"},900);
+  }else{
+   n++;
+   try{if(n>=5){sessionStorage.setItem("pxmu",String(Date.now()+60000));sessionStorage.setItem("pxmt","0")}else sessionStorage.setItem("pxmt",String(n))}catch(e){}
+   reply(A.nope);
+  }
+ });
+}
 function send(txt){
  txt=String(txt||"").trim().slice(0,120);
  if(!txt||busy)return;
+ if(/^\d{6}$/.test(txt)){input.value="";adminTry(txt);return}
  add("me",txt);input.value="";
  if(AI.indexOf("http")==0)aiAsk(txt,answer(txt));else reply(answer(txt));
 }

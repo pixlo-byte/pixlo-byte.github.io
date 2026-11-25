@@ -6,10 +6,44 @@
 <title>PIXLO FX Edit Studio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;900&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=23">
+<link rel="stylesheet" href="style.css?v=24">
 <link rel="stylesheet" href="game.css?v=7">
+<!--DEVHEAD START--><script>try{if(sessionStorage.getItem("pxmain")!=="1")document.documentElement.classList.add("devlock")}catch(e){document.documentElement.classList.add("devlock")}</script>
+<style>
+#devblock{display:none}
+html.devlock #devblock{display:block}
+html.devlock,html.devlock body{overflow:hidden!important;height:100%!important;overscroll-behavior:none}
+html.devlock body>*:not(#devblock):not(#pxbot){visibility:hidden!important}
+html.devlock #pxbot{z-index:700!important;display:block!important}
+#devblock{position:fixed;inset:0;z-index:600;overflow:hidden;background:radial-gradient(circle at 50% 40%,#0e2a0b,#020402 70%);touch-action:none;user-select:none;-webkit-user-select:none}
+#dbw{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+#dbc{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.dbb{position:relative;text-align:center;padding:24px;color:#fff;font-family:Outfit,system-ui,sans-serif;animation:dbE 1.5s steps(1) 1 both}
+.dbi{font-size:3.4rem}
+.dbb h1{font-weight:900;font-size:clamp(1.7rem,8vw,3.2rem);letter-spacing:.04em;margin:6px 0;line-height:1.1}
+.dbb h1 b{color:#39e61f;text-shadow:0 0 24px rgba(57,230,31,.7)}
+.dbb p{color:#aab5a8;font-weight:300;max-width:320px;margin:8px auto}
+.dbb .dbh{color:#39e61f;letter-spacing:.3em;font-size:.75rem;margin-top:24px}
+.dbl{display:inline-block;margin-top:18px;padding:12px 24px;border-radius:30px;border:1.5px solid #39e61f;color:#fff;text-decoration:none;font-size:.95rem}
+@keyframes dbE{0%{opacity:0}10%{opacity:1}16%{opacity:0}30%{opacity:1}36%{opacity:.25}50%{opacity:1}100%{opacity:1}}
+#dbr{position:absolute;inset:0;pointer-events:none;z-index:3}
+#dbr u,#dbr i,#dbr b{position:absolute;display:block;text-decoration:none;opacity:0}
+#dbr u{inset:0;background:rgba(255,0,0,.35);animation:dbI 1.3s steps(1) 1}
+#dbr i:nth-child(2){left:0;top:0;bottom:0;width:72%;background:radial-gradient(ellipse 100% 70% at 0% 50%,rgba(255,25,25,.55),transparent 70%);animation:dbL 2s steps(1) infinite}
+#dbr i:nth-child(3){right:0;top:0;bottom:0;width:72%;background:radial-gradient(ellipse 100% 70% at 100% 50%,rgba(255,25,25,.55),transparent 70%);animation:dbR 2s steps(1) infinite}
+#dbr b{inset:0;background:rgba(255,0,0,.07);animation:dbL 2s steps(1) infinite}
+@keyframes dbI{0%{opacity:0}8%{opacity:1}30%{opacity:0}55%{opacity:1}85%{opacity:0}100%{opacity:0}}
+@keyframes dbL{0%{opacity:1}10%{opacity:0}20%{opacity:1}30%{opacity:0}100%{opacity:0}}
+@keyframes dbR{0%{opacity:0}50%{opacity:1}60%{opacity:0}70%{opacity:1}80%{opacity:0}100%{opacity:0}}
+#dbf{position:absolute;inset:0;background:#d6e8ff;opacity:0;pointer-events:none;z-index:4}
+#dbw.shake{animation:dbs .38s linear}
+@keyframes dbs{0%{transform:translate(0,0) rotate(0)}10%{transform:translate(-9px,4px) rotate(-.4deg)}20%{transform:translate(8px,-6px) rotate(.5deg)}30%{transform:translate(-7px,-3px) rotate(-.3deg)}40%{transform:translate(9px,5px) rotate(.4deg)}55%{transform:translate(-5px,3px)}70%{transform:translate(4px,-3px)}85%{transform:translate(-2px,2px)}100%{transform:translate(0,0)}}
+@media (prefers-reduced-motion:reduce){#dbw.shake,.dbb,#dbr u,#dbr b{animation:none}.dbb{opacity:1}#dbr u,#dbr b{display:none}#dbr i:nth-child(2),#dbr i:nth-child(3){animation:none;opacity:.25}}
+</style><!--DEVHEAD END-->
 </head>
 <body>
+<!--DEVBODY START--><div id="devblock"><div id="dbw"><canvas id="dbc"></canvas><div class="dbb"><div class="dbi">🚧</div><h1>UNDER <b>DEVELOPMENT</b></h1><p>This site is in developing mode. Access is limited to the admin for now.</p><p class="dbh">TOUCH THE SCREEN ⚡</p><a class="dbl" href="v2.html">Visit the V2 site →</a></div></div><div id="dbr"><u></u><i></i><i></i><b></b></div><div id="dbf"></div></div><!--DEVBODY END-->
+
 <div id="splash"><span>PIXLO <b>FX</b></span><i></i></div><script>try{if(sessionStorage.getItem("pxs"))document.getElementById("splash").remove()}catch(e){}</script>
 
 <div class="page">
@@ -39,8 +73,8 @@
   <section class="right">
     <p class="hi">Hi, I'm</p>
     <h1>Durganandhan <span>ks.</span></h1>
-    <p class="role">Gamer, Photo and Video Editor</p>
-    <p class="bio">I'm a passionate gamer and creative editor, who loves to turn ideas into stunning visuals.</p>
+    <p class="role">Web Developer, Photo and Video Editor</p>
+    <p class="bio">I'm a web developer and creative editor, who loves to turn ideas into stunning visuals.</p>
     <div class="connect">
       <a class="btn" href="#contact">Let's Connect
         <svg viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
@@ -57,9 +91,9 @@
 
     <h2 class="ttl" id="services">What I do</h2>
     <div class="cards">
-      <div class="card" id="playGame">
-        <div class="ic"><svg viewBox="0 0 24 24"><path d="M6 8h12a4 4 0 014 4v2a3 3 0 01-5.2 2L15 14H9l-1.8 2A3 3 0 012 14v-2a4 4 0 014-4z"/><path d="M7 10.5v3M5.5 12h3"/><circle cx="16" cy="11" r=".6"/><circle cx="18" cy="13" r=".6"/></svg></div>
-        <span>Gaming</span>
+      <div class="card">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg></div>
+        <span>Web<br>Developer</span>
       </div>
       <div class="card">
         <div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M10 8.5l5 3-5 3z"/><path d="M7 21h10"/></svg></div>
@@ -71,6 +105,7 @@
       </div>
     </div>
 
+    <div class="gplay"><a class="btn" id="playGame" role="button" tabindex="0">🎮 Play games</a></div>
     <h2 class="ttl" id="about">About me</h2>
     <p class="about">I'm Durganandhan ks, a creative editor. I love photo and video editing, visual effects, and making unique content. Always learning fresh styles and improving my skills.</p>
     <a class="contact" id="contact" href="mailto:durganandhan123@gmail.com">
@@ -98,10 +133,11 @@
 <script src="trackrush.js?v=4"></script>
 <script src="touchfx.js?v=1"></script>
 <script src="pulseintro.js?v=1"></script>
-<script src="anim.js?v=2"></script>
+<script src="anim.js?v=3"></script>
 <script src="nav.js?v=1"></script>
-<script src="chatbot.js?v=2"></script>
+<script src="chatbot.js?v=5"></script>
 <script src="strands.js?v=1"></script>
 <script src="openlink.js?v=1"></script>
+<script src="devblock.js?v=2"></script>
 </body>
 </html>
