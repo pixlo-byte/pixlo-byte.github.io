@@ -102,6 +102,25 @@ h1{white-space:nowrap;overflow-wrap:normal}
 .hp::before{inset:0}
 @media(max-width:600px){header{flex-wrap:wrap;row-gap:6px}nav{order:3;flex:1 0 100%;justify-content:flex-start}}
 /* FIX2 END */
+/* ME START */
+.shot{aspect-ratio:auto!important;border-radius:0}
+.shot img{position:static!important;width:100%!important;height:auto!important;left:auto!important;top:auto!important}
+.hp::before{inset:-6%}
+/* ME END */
+/* FOG START */
+.hero{overflow-x:clip}
+.hp::before{inset:-10% -20% -4%;background:radial-gradient(ellipse 52% 42% at 50% 50%,rgba(57,230,31,.40),rgba(57,230,31,.13) 48%,transparent 72%),radial-gradient(ellipse 62% 17% at 28% 36%,rgba(190,255,180,.17),transparent 70%),radial-gradient(ellipse 70% 16% at 72% 62%,rgba(150,255,140,.15),transparent 70%);animation:fogA 14s ease-in-out infinite alternate;z-index:0;will-change:transform}
+.hp::after{content:"";position:absolute;inset:8% -24% -4%;background:radial-gradient(ellipse 60% 15% at 62% 30%,rgba(215,255,205,.13),transparent 70%),radial-gradient(ellipse 55% 17% at 36% 74%,rgba(160,255,150,.14),transparent 70%);animation:fogB 19s ease-in-out infinite alternate;pointer-events:none;z-index:0;will-change:transform}
+.shot{position:relative;z-index:1;padding:16px 20px 0}
+.shot img{filter:drop-shadow(0 0 24px rgba(57,230,31,.4))}
+@keyframes fogA{from{transform:translate3d(-3%,0,0) scale(1)}to{transform:translate3d(3%,-2%,0) scale(1.08)}}
+@keyframes fogB{from{transform:translate3d(4%,0,0) scale(1.04)}to{transform:translate3d(-4%,2%,0) scale(1)}}
+@media (prefers-reduced-motion:reduce){.hp::before,.hp::after{animation:none!important}}
+/* FOG END */
+/* PHOTO START */
+.shot{padding:0!important;-webkit-mask-image:none!important;mask-image:none!important}
+.shot img{filter:none!important;-webkit-mask-image:radial-gradient(ellipse closest-side at 50% 50%,#000 68%,transparent 100%);mask-image:radial-gradient(ellipse closest-side at 50% 50%,#000 68%,transparent 100%)}
+/* PHOTO END */
 </style>
 <noscript><style>.rv{opacity:1;transform:none;filter:none}#pre{display:none}</style></noscript>
 </head>
@@ -121,7 +140,7 @@ h1{white-space:nowrap;overflow-wrap:normal}
   <p class="lead rv">I'm a passionate gamer and creative editor, who loves to turn ideas into stunning visuals.</p>
   <div class="row rv"><a class="btn" href="#contact">Let's work together</a><a class="btn ghost" href="#projects">See projects</a></div>
  </div>
- <div class="hp rv"><div class="shot"><img src="photo.jpg" alt="Durganandhan ks" onerror="this.onerror=null;this.src='photo.png'"></div></div>
+ <div class="hp rv"><div class="shot"><img src="me2.jpg?v=3" alt="Durganandhan ks"></div></div>
 </section>
 <section class="stats rv">
  <div><b data-c="3">0</b><i>+</i><span>Years experience</span></div>

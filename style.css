@@ -249,3 +249,27 @@ footer{padding:calc(70px*var(--sp)) 6% calc(100px*var(--sp))}
 @keyframes pxload{to{transform:none}}
 #pxskip{position:fixed;top:14px;right:14px;z-index:6;padding:8px 14px;border-radius:20px;border:1px solid rgba(255,255,255,.35);background:rgba(0,0,0,.55);color:#fff;font:600 .8rem system-ui,sans-serif}
 /* PULSEINTRO END */
+
+/* ME START */
+.shot{aspect-ratio:auto!important;max-width:460px}
+.shot img{position:static!important;width:100%!important;height:auto!important;top:auto!important;left:auto!important}
+/* ME END */
+
+
+/* FOG START */
+.left{position:relative}
+.left::before,.left::after{content:"";position:absolute;pointer-events:none;z-index:0;will-change:transform}
+.left::before{inset:-6% -18% -2%;background:radial-gradient(ellipse 52% 42% at 50% 50%,rgba(57,230,31,.40),rgba(57,230,31,.13) 48%,transparent 72%),radial-gradient(ellipse 62% 17% at 28% 36%,rgba(190,255,180,.17),transparent 70%),radial-gradient(ellipse 70% 16% at 72% 62%,rgba(150,255,140,.15),transparent 70%);animation:fogA 14s ease-in-out infinite alternate}
+.left::after{inset:10% -22% -4%;background:radial-gradient(ellipse 60% 15% at 62% 30%,rgba(215,255,205,.13),transparent 70%),radial-gradient(ellipse 55% 17% at 36% 74%,rgba(160,255,150,.14),transparent 70%);animation:fogB 19s ease-in-out infinite alternate}
+.shot{position:relative;z-index:1;padding:16px 20px 0}
+.shot img{filter:drop-shadow(0 0 24px rgba(57,230,31,.4))}
+.stats{z-index:2}
+@keyframes fogA{from{transform:translate3d(-3%,0,0) scale(1)}to{transform:translate3d(3%,-2%,0) scale(1.08)}}
+@keyframes fogB{from{transform:translate3d(4%,0,0) scale(1.04)}to{transform:translate3d(-4%,2%,0) scale(1)}}
+@media (prefers-reduced-motion:reduce){.left::before,.left::after{animation:none!important}}
+/* FOG END */
+
+/* PHOTO START */
+.shot{padding:0!important;-webkit-mask-image:none!important;mask-image:none!important}
+.shot img{filter:none!important;-webkit-mask-image:radial-gradient(ellipse closest-side at 50% 50%,#000 68%,transparent 100%);mask-image:radial-gradient(ellipse closest-side at 50% 50%,#000 68%,transparent 100%)}
+/* PHOTO END */
