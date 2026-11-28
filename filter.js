@@ -2,13 +2,13 @@
 var card=document.getElementById('work');
 if(!card)return;
 card.style.cursor='pointer';
-var F=[['Original','none'],['✨ Dreamy','DREAM'],['🍂 Golden','GOLD'],['🌫️ Misty','MIST'],['🌧️ Monsoon','MONSOON'],['🌸 Magenta','MAG'],['🌸 Magenta + Boxes','MAGB'],['Neon','sepia(1) hue-rotate(55deg) saturate(3) contrast(1.1)'],['B&W','grayscale(1) contrast(1.2)'],['Vintage','sepia(.7) contrast(1.1) brightness(.95) saturate(1.3)'],['Warm','sepia(.35) saturate(1.4) brightness(1.05)'],['Cinema','contrast(1.25) saturate(.85) brightness(.9)'],['Pop','saturate(2) contrast(1.1)'],['Fade','contrast(.85) brightness(1.15) saturate(.8)'],['Dark','brightness(.75) contrast(1.4) saturate(1.2)']];
+var F=[['Original','none'],['✨ Dreamy','DREAM'],['🍂 Golden','GOLD'],['🌫️ Misty','MIST'],['🌧️ Monsoon','MONSOON'],['🌸 Magenta','MAG'],['🌸 Magenta + Boxes','MAGB'],['📼 Retro Film','RETRO'],['Neon','sepia(1) hue-rotate(55deg) saturate(3) contrast(1.1)'],['B&W','grayscale(1) contrast(1.2)'],['Vintage','sepia(.7) contrast(1.1) brightness(.95) saturate(1.3)'],['Warm','sepia(.35) saturate(1.4) brightness(1.05)'],['Cinema','contrast(1.25) saturate(.85) brightness(.9)'],['Pop','saturate(2) contrast(1.1)'],['Fade','contrast(.85) brightness(1.15) saturate(.8)'],['Dark','brightness(.75) contrast(1.4) saturate(1.2)']];
 var m=document.createElement('div');m.className='gm';
 m.innerHTML='<div class="gbox fbox"><button class="gx" id="fx">✕</button><h3>PHOTO <b>FILTERS</b></h3><div class="fprev"><canvas id="fc" width="320" height="320"></canvas><p id="fhint">Choose a photo or take one</p></div><div class="frow"><label class="fbtn">📁 Choose<input type="file" accept="image/*" id="fin" hidden></label><label class="fbtn">📷 Camera<input type="file" accept="image/*" capture="environment" id="fcam" hidden></label></div><div class="fstrip" id="fs"></div><div class="fsl"><span>Brightness</span><input type="range" id="fb" min="50" max="150" value="100"></div><div class="fsl"><span>Contrast</span><input type="range" id="fk" min="50" max="150" value="100"></div><button class="gbtn" id="fdl">DOWNLOAD</button></div>';
 document.body.appendChild(m);
 function $(i){return document.getElementById(i)}
 var c=$('fc'),x=c.getContext('2d'),img=null,cur=0,strip=$('fs');
-function flt(){var f=F[cur][1];if(f=='none'||f=='DREAM'||f=='GOLD'||f=='MIST'||f=='MONSOON'||f=='MAG'||f=='MAGB')f='';return (f+' brightness('+$('fb').value/100+') contrast('+$('fk').value/100+')').trim()}
+function flt(){var f=F[cur][1];if(f=='none'||f=='DREAM'||f=='GOLD'||f=='MIST'||f=='MONSOON'||f=='MAG'||f=='MAGB'||f=='RETRO')f='';return (f+' brightness('+$('fb').value/100+') contrast('+$('fk').value/100+')').trim()}
 var gp=null;
 function grain(g){if(!gp){var n=document.createElement('canvas');n.width=n.height=200;var q=n.getContext('2d'),d=q.createImageData(200,200);for(var i=0;i<d.data.length;i+=4){var v=Math.random()*255;d.data[i]=d.data[i+1]=d.data[i+2]=v;d.data[i+3]=255}q.putImageData(d,0,0);gp=n}return g.createPattern(gp,'repeat')}
 function dream(g,im,w,h){
@@ -130,10 +130,55 @@ function magenta(g,im,w,h,boxes){
  }
  g.restore();
 }
+function retro(g,im,w,h){
+ var K=im._rt;
+ if(!K||K.w!==w||K.h!==h){
+  var cv=document.createElement('canvas');cv.width=w;cv.height=h;
+  var q=cv.getContext('2d');q.drawImage(im,0,0,w,h);
+  var id=q.getImageData(0,0,w,h),d=id.data,n=d.length,i;
+  for(i=0;i<n;i+=4){
+   var r=d[i],gr=d[i+1],b=d[i+2],y=.299*r+.587*gr+.114*b;
+   r=y+(r-y)*1.1;gr=y+(gr-y)*1.1;b=y+(b-y)*1.1;
+   r=(r-128)*.9+136;gr=(gr-128)*.9+136;b=(b-128)*.9+136;
+   r*=1.08;gr*=1.01;b*=.84;
+   var sh=1-y/255;sh*=sh;
+   gr+=sh*7;b+=sh*4;r-=sh*3;
+   if(y>190){var hl=(y-190)/65;r+=hl*8;gr+=hl*4}
+   d[i]=r<0?0:r>255?255:r;d[i+1]=gr<0?0:gr>255?255:gr;d[i+2]=b<0?0:b>255?255:b;
+  }
+  q.putImageData(id,0,0);
+  var m2=Math.max(w,h),t2=document.createElement('canvas');t2.width=w;t2.height=h;t2.getContext('2d').drawImage(cv,0,0);
+  q.save();q.globalCompositeOperation='screen';q.globalAlpha=.2;
+  q.filter='blur('+Math.max(3,Math.round(m2*.008))+'px) brightness(1.5) sepia(.7) saturate(1.8)';
+  q.drawImage(t2,0,0);q.restore();
+  var lk=q.createRadialGradient(w*.02,h*.12,0,w*.02,h*.12,m2*.5);
+  lk.addColorStop(0,'rgba(255,150,70,.32)');lk.addColorStop(1,'rgba(255,120,40,0)');
+  q.save();q.globalCompositeOperation='screen';q.fillStyle=lk;q.fillRect(0,0,w,h);q.restore();
+  var vg=q.createRadialGradient(w/2,h/2,m2*.25,w/2,h/2,m2*.78);
+  vg.addColorStop(0,'rgba(0,0,0,0)');vg.addColorStop(1,'rgba(30,16,8,.45)');
+  q.save();q.globalCompositeOperation='multiply';q.fillStyle=vg;q.fillRect(0,0,w,h);
+  q.globalCompositeOperation='overlay';q.globalAlpha=.42;q.fillStyle=grain(q);q.fillRect(0,0,w,h);q.restore();
+  var sd=((w*73856093)^(h*19349663))>>>0;
+  function rnd(){sd=(sd+0x6D2B79F5)>>>0;var t=sd;t=Math.imul(t^t>>>15,t|1);t^=t+Math.imul(t^t>>>7,t|61);return((t^t>>>14)>>>0)/4294967296}
+  var sc=w/720,px,py,rs;
+  q.save();
+  for(i=0;i<130;i++){px=rnd()*w;py=rnd()*h;rs=(.5+rnd()*1.6)*sc;q.fillStyle='rgba(255,248,235,'+(.25+rnd()*.5)+')';q.beginPath();q.arc(px,py,rs,0,7);q.fill()}
+  for(i=0;i<35;i++){px=rnd()*w;py=rnd()*h;rs=(.5+rnd()*1.3)*sc;q.fillStyle='rgba(20,10,5,'+(.3+rnd()*.4)+')';q.beginPath();q.arc(px,py,rs,0,7);q.fill()}
+  q.strokeStyle='rgba(255,246,232,.35)';q.lineWidth=Math.max(.6,.9*sc);
+  for(i=0;i<9;i++){var hx=rnd()*w,hy=rnd()*h,len=(10+rnd()*30)*sc,a=rnd()*6.283;q.beginPath();q.moveTo(hx,hy);q.quadraticCurveTo(hx+Math.cos(a)*len*.6+rnd()*6*sc,hy+Math.sin(a)*len*.6,hx+Math.cos(a)*len,hy+Math.sin(a)*len);q.stroke()}
+  q.strokeStyle='rgba(255,246,232,.45)';q.lineWidth=Math.max(1,1.4*sc);q.beginPath();q.moveTo(0,h*.803);q.lineTo(w*.5,h*.8);q.lineTo(w,h*.797);q.stroke();
+  q.strokeStyle='rgba(255,246,232,.25)';q.lineWidth=Math.max(.8,.9*sc);
+  [.18,.74].forEach(function(f){var vx=w*f;q.beginPath();q.moveTo(vx,0);q.lineTo(vx+rnd()*3*sc,h);q.stroke()});
+  q.restore();
+  K=im._rt={w:w,h:h,cv:cv};
+ }
+ g.save();g.globalAlpha=1;g.globalCompositeOperation='source-over';g.filter='none';
+ g.drawImage(K.cv,0,0);g.restore();
+}
 var pend=0;
 function render(){
  if(img){
-  if(F[cur][1]=='DREAM'){dream(x,img,c.width,c.height)}else if(F[cur][1]=='GOLD'){gold(x,img,c.width,c.height)}else if(F[cur][1]=='MIST'){mist(x,img,c.width,c.height)}else if(F[cur][1]=='MONSOON'){monsoon(x,img,c.width,c.height)}else if(F[cur][1]=='MAG'||F[cur][1]=='MAGB'){magenta(x,img,c.width,c.height,F[cur][1]=='MAGB')}
+  if(F[cur][1]=='DREAM'){dream(x,img,c.width,c.height)}else if(F[cur][1]=='GOLD'){gold(x,img,c.width,c.height)}else if(F[cur][1]=='MIST'){mist(x,img,c.width,c.height)}else if(F[cur][1]=='RETRO'){retro(x,img,c.width,c.height)}else if(F[cur][1]=='MONSOON'){monsoon(x,img,c.width,c.height)}else if(F[cur][1]=='MAG'||F[cur][1]=='MAGB'){magenta(x,img,c.width,c.height,F[cur][1]=='MAGB')}
   else{x.save();x.filter='none';x.globalCompositeOperation='source-over';x.globalAlpha=1;x.drawImage(img,0,0,c.width,c.height);x.restore()}
  }
  c.style.filter=flt();
@@ -164,7 +209,7 @@ $('fdl').onclick=function(){
  var o=document.createElement('canvas');o.width=c.width;o.height=c.height;
  var ox=o.getContext('2d');
  if(!('filter' in ox)){alert('This browser cannot save filters. Take a screenshot instead.');return}
- var src=img;var fxn=({DREAM:dream,GOLD:gold,MIST:mist,MONSOON:monsoon,MAG:function(a,b,w,h){magenta(a,b,w,h,false)},MAGB:function(a,b,w,h){magenta(a,b,w,h,true)}})[F[cur][1]];if(fxn){var tc=document.createElement('canvas');tc.width=o.width;tc.height=o.height;fxn(tc.getContext('2d'),img,o.width,o.height);src=tc}ox.filter=flt()||'none';ox.drawImage(src,0,0,o.width,o.height);
+ var src=img;var fxn=({RETRO:retro,DREAM:dream,GOLD:gold,MIST:mist,MONSOON:monsoon,MAG:function(a,b,w,h){magenta(a,b,w,h,false)},MAGB:function(a,b,w,h){magenta(a,b,w,h,true)}})[F[cur][1]];if(fxn){var tc=document.createElement('canvas');tc.width=o.width;tc.height=o.height;fxn(tc.getContext('2d'),img,o.width,o.height);src=tc}ox.filter=flt()||'none';ox.drawImage(src,0,0,o.width,o.height);
  o.toBlob(function(b){var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='pixlo-edit.jpg';document.body.appendChild(a);a.click();a.remove()},'image/jpeg',.92);
 };
 card.onclick=function(){m.classList.add('on')};
